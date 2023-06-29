@@ -1,0 +1,11 @@
+{
+  "name": "primerapp",
+  "version": "1.0.0",
+  "description": "Nuestra primer app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Odalis Garcia",
+  "license": "ISC"
+}
