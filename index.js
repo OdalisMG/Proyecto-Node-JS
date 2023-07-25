@@ -4,7 +4,7 @@ const port = 3700;
 
 app.get("/" , (req, res)=> {
     console.log("Get ejecutado en raiz");
-    res.send("Hola mundo");
+    res.send("Mi primer endpoint");
 });
 
 app.listen(port,()=>{
