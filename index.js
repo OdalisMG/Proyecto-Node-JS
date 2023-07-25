@@ -1,12 +1,12 @@
-console.log("Hola mundo");
+const express = require('express');
+const app =  express();
+const port = 3700;
 
-let enojo = 50;
-let tiempo = 100;
+app.get("/" , (req, res)=> {
+    console.log("Get ejecutado en raiz");
+    res.send("Hola mundo");
+});
 
-console.log(enojo);
-
-console.log(enojo + tiempo);
-
-enojo = "Efectivamente esta molesto Odalis";
-
-console.log(enojo);
+app.listen(port,()=>{
+    console.log("Servidor de ejemplo ejecutando en"+port);
+});
