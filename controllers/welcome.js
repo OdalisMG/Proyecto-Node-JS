@@ -12,16 +12,45 @@ var controller = {
     },
 
     alumno: function(req, res){
-        let cal1 = 10;
-        let cal2 = 8;
-        let cal3 = 8;
+        let cal1 = 5;
+        let cal2 = 5;
+        let cal3 = 5;
+        
         let final = (cal1 + cal2 + cal3) / 3;
+        
         console.log(final);
-        res.send("La calificacion final es: "+final);
+
+        if(final< 6 ){
+            return res.status(400).json({
+                status: 400,
+                cal_final: final
+            });
+        }else{
+            return res.status(200).json({
+                status: 200,
+                cal_final: final
+            });
+        }
+        
+        //res.send("La calificacion final es: "+final);
+        return res.status(200).json({
+            status: 200,
+            cal_final: final
+        })
     },
 
     crear_alumno: (req, res) => {
-        res.send("Creamos un alumno");
+
+        let user_info = req.body;
+
+        console.log(user_info);
+
+        //res.send( "Creamos un alumno"  +  user_info.nombre  +  "Edad"  +  user_info.edad);
+        return res.status (200).json({
+            status: 200,
+        nombre_de_alumno: user_info.nombre + "" + user_info.apellido,
+        edad: user_info.edad
+        });
     }
 };
 
