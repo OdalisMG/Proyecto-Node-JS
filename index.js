@@ -4,7 +4,7 @@ const port = 3700;
 
 app.get("/", (req, res) => {
     console.log("Get ejecutado en raiz");
-    res.send("Hola mundo");
+    res.send("Mi primer debug");
 });
 
 app.get("/alumnos", (req, res) => {
@@ -32,10 +32,10 @@ app.put("/alumno", (req, res) => {
     res.send("Actualizamos un alumno");
 });
 
-app.delete("/alumno", (req, res)=> {
+app.delete("/alumno", (req, res) => {
     res.send("Eliminamos un alumno");
 });
 
-app.listen(port, ()=>{
+app.listen(port, () =>{
     console.log("Servidor de ejemplo ejecutando en "+port);
 });
