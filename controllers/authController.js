@@ -23,7 +23,7 @@ var controller = {
                 usuario_id : usuario.id
             };
 
-            const access_token = jwt.sign(payload, 'PLUcNrIeLtGheIubdl99j8yA8xYNU46jsB0UQ505jg5wqp1uO2', {
+            const access_token = jwt.sign(payload, 'KhvjxPxmzhkbJZgKMveYo40fe4jMegAEU80keAr40GcBZXxxkE', {
                 expiresIn: '1d'
             })
 
