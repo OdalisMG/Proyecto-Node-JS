@@ -1,8 +1,15 @@
 'use strict'
+const mongoose = require('mongoose');
+const app = require('./app');
 const port = 3700;
 
-const app = require('./app');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/ProyectoUsuario',{  useUnifiedTopology:true})
+        .then(()=>{
+            console.log('Conexión a la base de datos establecida con éxito');
 
-app.listen(port, ()=>{
-    console.log("Servidor de ejemplo ejecutando en "+port);
-});
+            var server = app.listen(port, () => {
+                console.log("Servidor de ejemplo ejecuntando en http://localhost:" + port)
+                });
+        })
+        .catch(err => console.log(err));

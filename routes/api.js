@@ -1,21 +1,36 @@
 'use strict'
 const express = require('express');
 const api = express.Router();
+const {body} = require('express-validator');
 
 var WelcomeController = require('../controllers/welcome');
+var UsuariosController = require('../controllers/usuariosController');
+let AuthController = require('../controllers/authController');
 
-api.get("/", WelcomeController.welcome);
-api.get("/alumnos", WelcomeController.alumnos);
-api.get("/alumno", WelcomeController.alumno);
-api.post("/alumno", WelcomeController.crear_alumno);
+let userProtectUrl = require('../middlewares/authUsuario').userProtectUrl;
 
-api.put("/alumno", (req, res) => {
-    res.send("Actualizamos un alumno");
-});
+api.get("/", userProtectUrl,WelcomeController.welcome);
+api.get("/usuarios",userProtectUrl,  UsuariosController.usuarios);
+api.get("/usuario/:filtro",userProtectUrl,  UsuariosController.usuario);
+api.post("/usuario",userProtectUrl, [
+                    body('usuario_id').not().isEmpty(),
+                    body('nombre').not().isEmpty(),
+                    body('edad').not().isEmpty(),
+                    body('email').not().isEmpty(),
+                    body('password').not().isEmpty()
+                ], UsuariosController.crear_usuario);
+api.put("/usuario/:filtro",userProtectUrl, [
+         body('nombre').not().isEmpty(),
+         body('edad').not().isEmpty(),
+         body('email').not().isEmpty(),
+         body('password').not().isEmpty()
+      ], UsuariosController.actualizar_usuario);
 
-api.delete("/alumno", (req, res) => {
-    res.send("Eliminamos un alumno");
-});
+api.delete("/usuario/:filtro",userProtectUrl, UsuariosController.eliminar_usuario);
 
-
+api.post("/login",[
+    body('email').not().isEmpty(),
+    body('password').not().isEmpty()
+], AuthController.login);
+api.post("/logout", userProtectUrl,  AuthController.logout);
 module.exports = api;
